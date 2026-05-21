@@ -16,7 +16,7 @@ jobs:
               run: |
                 cd blog
                 FILE="$(find . -type f -empty -print -quit)"
-                echo "FILE=$FILE" >> $GITHUB_ENV
+                echo "FILE='${FILE#./}'" >> $GITHUB_ENV
                 echo "Blank article file: $FILE"
 
             - name: Check if file name is valid
