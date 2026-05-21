@@ -9,10 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Clone GitHub Repo
-                uses: actions/checkout@v4
+              uses: actions/checkout@v4
 
             - name: Find blank article file
               run: |
-                cd blog |
-                FILE=$(find "$file" -size 0)
-                echo "Blank article file: $FILE"
+                  cd blog |
+                  FILE=$(find "$file" -size 0)
+                  echo "Blank article file: $FILE"
