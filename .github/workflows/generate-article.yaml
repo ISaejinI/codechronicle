@@ -14,7 +14,8 @@ jobs:
 
             - name: Find blank article file
               run: |
-                FILE="$(find blog -type f -empty -print -quit)"
+                cd blog
+                FILE="$(find . -type f -empty -print -quit)"
                 FILE="${FILE#./}"
                 echo "FILE=$FILE" >> $GITHUB_ENV
                 echo "Blank article file: $FILE"
