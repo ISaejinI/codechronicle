@@ -1,11 +1,12 @@
 name: Generate Article
+
 on:
     push:
         branches:
             - main
+
 jobs:
     check-file-name-validity:
-        name: Check file name validity
         runs-on: ubuntu-latest
         steps:
             - name: Clone GitHub Repo
@@ -16,3 +17,14 @@ jobs:
                 cd blog
                 FILE="$(find . -type f -empty -print -quit)"
                 echo "Blank article file: $FILE"
+            
+            - name: Check if file name is valid
+              run: |
+                if ! echo "$FILE" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*\.md$'; then
+                    echo "Nom de fichier invalide : $FILE"
+                    echo "Format attendu : YYYY-MM-DD-nom-de-l-article.md"
+                    exit 1
+                else
+                    echo "Nom de fichier valide : $FILE"
+                fi
+                
