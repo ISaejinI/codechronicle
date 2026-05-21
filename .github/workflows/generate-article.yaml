@@ -13,6 +13,6 @@ jobs:
 
             - name: Find blank article file
               run: |
-                  cd blog |
-                  FILE=$(find "$file" -size 0)
-                  echo "Blank article file: $FILE"
+                cd blog
+                FILE="$(find . -type f -empty -print -quit)"
+                echo "Blank article file: $FILE"
