@@ -1,0 +1,24 @@
+{
+  "name": "codechronicle",
+  "version": "1.0.0",
+  "description": "AI blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ISaejinI/codechronicle.git"
+  },
+  "keywords": [
+    "CI/CD",
+    "AI",
+    "Blog"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ISaejinI/codechronicle/issues"
+  },
+  "homepage": "https://github.com/ISaejinI/codechronicle#readme"
+}
