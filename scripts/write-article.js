@@ -18,5 +18,9 @@ const response = await openAiClient.responses.create({
 
 fs.writeFileSync(`blog/${fileName}`, response.output_text);
 
+const fileContent = fs.readFileSync(`blog/${fileName}`, "utf-8");
+
 console.log(`Fichier à générer : ${fileName}`);
 console.log("Clé API bien récupérée");
+console.log(`Contenu du fichier ${fileName}`)
+console.log(fileContent);
