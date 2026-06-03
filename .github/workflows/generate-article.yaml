@@ -1,7 +1,9 @@
 name: Generate Article
 
 on:
-  push:
+  workflow_dispatch:
+
+  pull_request:
     branches:
       - main
 
