@@ -35,6 +35,9 @@ jobs:
         with:
           node-version: 26
       
+      - name: Install OpenAI
+        run: npm install openai
+      
       - name: OpenAI link and generate article
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
