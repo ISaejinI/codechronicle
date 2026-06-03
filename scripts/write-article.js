@@ -1,4 +1,4 @@
-const fileName = env.FILE
+const fileName = process.env.FILE
 
 
 console.log(fileName)
