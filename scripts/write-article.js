@@ -1,6 +1,9 @@
-const fileName = process.env.FILE
-const apiKey = process.secrets.OPENAI_API_KEY
+const fileName = process.env.FILE;
+const apiKey = process.env.OPENAI_API_KEY;
 
+if (!apiKey) {
+  throw new Error("OPENAI_API_KEY est introuvable");
+}
 
-console.log(fileName)
-console.log("Cocou")
+console.log(`Fichier à générer : ${fileName}`);
+console.log("Clé API bien récupérée");
