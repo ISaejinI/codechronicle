@@ -23,11 +23,11 @@ jobs:
             - name: Check if file name is valid
               run: |
                 if ! echo "$FILE" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*\.md$'; then
-                    echo "Nom de fichier invalide : $FILE"
-                    echo "Format attendu : YYYY-MM-DD-nom-de-l-article.md"
-                    exit 1
+                  echo "Nom de fichier invalide : $FILE"
+                  echo "Format attendu : YYYY-MM-DD-nom-de-l-article.md"
+                  exit 1
                 else
-                    echo "Nom de fichier valide : $FILE"
+                  echo "Nom de fichier valide : $FILE"
                 fi
 
             - name: Set up Node.js
@@ -39,7 +39,7 @@ jobs:
               uses: Just-Moh-it/openai@v0.0.1
               with:
                 openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-                openai-mode: "completion"
+                openai-mode: "chat"
                 openai-params: >-
                     {
                         "prompt": "Tu es rédacteur technique. Génère un article de blog en Markdown à partir du nom de fichier suivant : ${FILE}. Le fichier suit le format YYYY-MM-DD-slug.md. Déduis le sujet depuis le slug. Réponds uniquement avec le contenu Markdown final, sans explication. Le fichier doit commencer par un frontmatter YAML contenant exactement : title, summary, tags. tags doit être une liste YAML. Ensuite, écris un article clair en français avec une introduction, plusieurs sections avec titres Markdown, des exemples concrets, et une conclusion. Sujet : ${FILE}",
