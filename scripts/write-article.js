@@ -8,9 +8,9 @@ if (!apiKey) {
   throw new Error("OPENAI_API_KEY est introuvable");
 }
 
-const response = await client.responses.create({
+const response = await apiKey.responses.create({
   model: "gpt-4.1-mini",
-  input: `Génère un article Markdown complet à partir du fichier ${file}...`
+  input: `Tu es rédacteur technique. Génère un article de blog en Markdown à partir du nom de fichier suivant : ${fileName}. Le fichier suit le format YYYY-MM-DD-slug.md. Déduis le sujet depuis le slug. Réponds uniquement avec le contenu Markdown final, sans explication. Le fichier doit commencer par un frontmatter YAML contenant exactement : title, summary, tags. tags doit être une liste YAML. Ensuite, écris un article clair en français avec une introduction, plusieurs sections avec titres Markdown, des exemples concrets, et une conclusion. Sujet : ${fileName}`
 });
 
 fs.writeFileSync(`blog/${file}`, response.output_text);
