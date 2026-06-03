@@ -84,9 +84,9 @@ jobs:
               repo: context.repo.repo,
               body: `## Article généré automatiquement
 
-                **Titre :** ${{ env.TITLE }}
+                Titre : ${{ env.TITLE }}
 
-                **Résumé :** ${{ env.SUMMARY }}
+                Résumé : ${{ env.SUMMARY }}
 
                 L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.`
             });
