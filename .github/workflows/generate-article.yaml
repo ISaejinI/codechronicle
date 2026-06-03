@@ -7,12 +7,17 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   generate-article:
     runs-on: ubuntu-latest
     steps:
       - name: Clone GitHub Repo
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Find blank article file
         run: |
@@ -50,3 +55,11 @@ jobs:
         with:
           name: generated-article
           path: blog/${{ env.FILE }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "OtterBot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/${{ env.FILE }}
+          git commit -m "Generate article: ${{ env.FILE }}"
+          git push
