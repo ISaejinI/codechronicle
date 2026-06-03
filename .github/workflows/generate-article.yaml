@@ -42,3 +42,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node ./scripts/write-article.js
+
+      - name: Save article as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-article
+          path: blog/${{ env.FILE }}
