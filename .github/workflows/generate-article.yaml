@@ -69,8 +69,8 @@ jobs:
       - name: Get Article Title & Summary
         id: get_title_summary
         run: |
-          TITLE=$(grep '^title:' "$FILE" | sed 's/title: "\(.*\)"/\1/')
-          SUMMARY=$(grep '^summary:' "$FILE" | sed 's/summary: "\(.*\)"/\1/')
+          TITLE=$(grep '^title:' "blog/${{ env.FILE }}" | sed 's/title: "\(.*\)"/\1/')
+          SUMMARY=$(grep '^summary:' "blog/${{ env.FILE }}" | sed 's/summary: "\(.*\)"/\1/')
           echo "TITLE=$TITLE" >> $GITHUB_ENV
           echo "SUMMARY=$SUMMARY" >> $GITHUB_ENV
 
