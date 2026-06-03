@@ -63,3 +63,14 @@ jobs:
           git add blog/${{ env.FILE }}
           git commit -m "Generate article: ${{ env.FILE }}"
           git push
+
+      - name: Add comment to Pull Request
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Test de commentaire`
+            });
