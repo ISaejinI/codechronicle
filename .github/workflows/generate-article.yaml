@@ -90,3 +90,15 @@ jobs:
 
                 L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.`
             });
+
+      - name: Send Discord Message
+        uses: Ilshidur/action-discord@v2
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          message: |
+            Nouvel article généré : **${{ env.TITLE }}**
+            
+            Résumé : ${{ env.SUMMARY }}
+            
+            L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.
+          
