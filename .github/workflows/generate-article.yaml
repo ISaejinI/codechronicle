@@ -92,10 +92,11 @@ jobs:
             });
 
       - name: Send Discord Message
-        uses: Ilshidur/action-discord@v2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        uses: Ilshidur/action-discord@0.4.0
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: |
+          args: |
             Nouvel article généré : **${{ env.TITLE }}**
             
             Résumé : ${{ env.SUMMARY }}
