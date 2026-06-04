@@ -85,3 +85,11 @@ jobs:
                 git add public/
                 git commit -m "Generate HTML article: ${{ env.FILE_NAME }}.html and index.html"
                 git push
+            
+            - name: Publish public folder to InfinityFree
+              uses: SamKirkland/FTP-Deploy-Action@4.1.0
+              with:
+                server: ${{ secrets.FTP_HOSTNAME }}
+                username: ${{ secrets.FTP_USERNAME }}
+                password: ${{ secrets.FTP_PASSWORD }}
+                local-dir: public
