@@ -19,13 +19,25 @@ jobs:
             - name: Clone GitHub Repo
               uses: actions/checkout@v4
               with:
-                ref: ${{ github.head_ref }}
+                fetch-depth: 0
 
-            - name: Find new article file
+            - name: Find merged article file
               run: |
-                FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/.*\.md$' | head -n 1)
+                if [ "${{ github.event_name }}" = "push" ] && [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+                  FILE="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'blog/*.md' | head -n 1)"
+                else
+                  FILE="$(git log -1 --name-only --pretty="" -- 'blog/*.md' | head -n 1)"
+                fi
+
                 FILE="${FILE#blog/}"
+
+                if [ -z "$FILE" ]; then
+                  echo "Impossible de retrouver l'article Markdown généré."
+                  exit 1
+                fi
+
                 echo "FILE=$FILE" >> $GITHUB_ENV
+                echo "Merged article file: $FILE"
 
 
             - name: Get Article Title & Summary
