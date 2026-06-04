@@ -1,6 +1,8 @@
 name: Implement Article
 
 on:
+    workflow_dispatch:
+
     push:
         branches:
             - main
@@ -64,7 +66,7 @@ jobs:
               run: |
                 FILE_NAME=$(basename "${{ env.FILE }}" .md)
                 echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
-                touch public/blog/${{ env.FILE_NAME }}.html
+                touch ./public/blog/${{ env.FILE_NAME }}.html
                                   
             - name: Convert article to HTML
               run: node ./scripts/convert-to-html.js
