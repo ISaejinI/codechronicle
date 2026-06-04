@@ -7,3 +7,5 @@ const fileName = process.env.FILE_NAME;
 const htmlContent = markdown(content);
 
 fs.writeFileSync(`public/blog/${fileName}.html`, htmlContent);
+
+console.log(htmlContent);
