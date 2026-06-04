@@ -9,6 +9,9 @@ on:
         paths:
             - 'blog/**'
 
+permissions:
+  contents: write
+
 jobs:
     implement-article:
         runs-on: ubuntu-latest
@@ -71,3 +74,11 @@ jobs:
                                   
             - name: Convert article to HTML
               run: node ./scripts/convert-to-html.js
+
+            - name: Commit and push changes
+              run: |
+                git config --global user.name "OtterBot"
+                git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                git add public/blog/${{ env.FILE_NAME }}.html
+                git commit -m "Generate HTML article: ${{ env.FILE_NAME }}.html"
+                git push
