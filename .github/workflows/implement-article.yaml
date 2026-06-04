@@ -66,8 +66,8 @@ jobs:
               run: |
                 FILE_NAME=$(basename "${{ env.FILE }}" .md)
                 echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
-                echo "Creating HTML file: public/blog/${ FILE_NAME }.html"
-                touch "./public/blog/${ FILE_NAME }.html"
+                echo "Creating HTML file: public/blog/${FILE_NAME}.html"
+                touch "./public/blog/${FILE_NAME}.html"
                                   
             - name: Convert article to HTML
               run: node ./scripts/convert-to-html.js
