@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CodeChronicle — Blog technique IA</title>
+
+  <meta
+    name="description"
+    content="CodeChronicle est un blog technique alimenté par l'intelligence artificielle."
+  />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --card-hover: #1f2937;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --primary: #38bdf8;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.2), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 80px 20px 50px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.08);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    .section-title {
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-6px);
+      background: var(--card-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .article-date {
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .article-card h2 {
+      margin-bottom: 12px;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .article-card p {
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .article-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .article-link:hover {
+      color: var(--primary);
+    }
+
+    .article-link:hover span {
+      transform: translateX(4px);
+    }
+
+    .empty-message {
+      color: var(--muted);
+      font-size: 18px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(17, 24, 39, 0.85);
+    }
+
+    footer {
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding-top: 55px;
+      }
+
+      .article-card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="badge">🤖 Blog technique généré par IA</div>
+
+    <h1>
+      Bienvenue sur <span class="highlight">CodeChronicle</span>
+    </h1>
+
+    <p class="intro">
+      Découvrez nos articles techniques générés automatiquement grâce à l’intelligence artificielle.
+      GitHub, développement web, DevOps, automatisation : explorez les sujets clés du numérique.
+    </p>
+  </header>
+
+  <main>
+    <h2 class="section-title">📰 Derniers articles</h2>
+
+    <section class="articles-grid">
+      
+      <article class="article-card">
+        <div>
+          <div class="article-date">Date inconnue</div>
+          <h2>Test</h2>
+          <p>Aucun résumé disponible pour cet article.</p>
+
+          <div class="tags">
+            <span class="tag">Article</span><span class="tag">Blog</span><span class="tag">IA</span>
+          </div>
+        </div>
+
+        <a class="article-link" href="./blog/test.html">
+          Lire l’article <span>→</span>
+        </a>
+      </article>
+
+      <article class="article-card">
+        <div>
+          <div class="article-date">4 juin 2026</div>
+          <h2>La Kazdalerie De Lille</h2>
+          <p>Aucun résumé disponible pour cet article.</p>
+
+          <div class="tags">
+            <span class="tag">Article</span><span class="tag">Blog</span><span class="tag">IA</span>
+          </div>
+        </div>
+
+        <a class="article-link" href="./blog/2026-06-04-la-kazdalerie-de-lille.html">
+          Lire l’article <span>→</span>
+        </a>
+      </article>
+
+      <article class="article-card">
+        <div>
+          <div class="article-date">5 février 2026</div>
+          <h2>Les Telephones Iphone</h2>
+          <p>Aucun résumé disponible pour cet article.</p>
+
+          <div class="tags">
+            <span class="tag">Article</span><span class="tag">Blog</span><span class="tag">IA</span>
+          </div>
+        </div>
+
+        <a class="article-link" href="./blog/2026-02-05-les-telephones-iphone.html">
+          Lire l’article <span>→</span>
+        </a>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 CodeChronicle — Blog automatisé avec GitHub Actions et IA.</p>
+  </footer>
+</body>
+</html>
