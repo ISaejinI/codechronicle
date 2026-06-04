@@ -7,6 +7,13 @@ const outputPath = `public/blog/${fileName}.html`;
 
 let markdownContent = fs.readFileSync(inputPath, "utf8");
 
+// Supprime les balises ```markdown éventuelles générées par l'IA
+markdownContent = markdownContent
+  .replace(/^```markdown\s*/i, "")
+  .replace(/^```\s*/i, "")
+  .replace(/```\s*$/i, "")
+  .trim();
+
 const titleMatch = markdownContent.match(/^title:\s*"?(.*?)"?$/m);
 const summaryMatch = markdownContent.match(/^summary:\s*"?(.*?)"?$/m);
 const tagsMatch = markdownContent.match(/tags:\s*\n((?:\s*-\s*.+\n?)+)/);
@@ -21,7 +28,10 @@ const tags = tagsMatch
       .filter(Boolean)
   : [];
 
-markdownContent = markdownContent.replace(/^---[\s\S]*?---/, "").trim();
+// Supprime le frontmatter YAML pour ne pas l'afficher dans l'article
+markdownContent = markdownContent
+  .replace(/^---\s*\n[\s\S]*?\n---\s*/, "")
+  .trim();
 
 function convertInline(text) {
   return text
