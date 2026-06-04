@@ -43,4 +43,28 @@ jobs:
                     Résumé : ${{ env.SUMMARY }}
                     
                     L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.
-                
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v1
+              with:
+                node-version: 26
+
+            - name: Install dependencies
+              run: npm i @wcj/markdown-to-html
+
+            - name: Get article content
+              id: get_article_content
+              run: |
+                CONTENT=$(cat "blog/${{ env.FILE }}")
+                echo "CONTENT<<EOF" >> $GITHUB_ENV
+                echo "$CONTENT" >> $GITHUB_ENV
+                echo "EOF" >> $GITHUB_ENV
+            
+            - name: Create HTML file
+              run: |
+                FILE_NAME=$(basename "${{ env.FILE }}" .md)
+                echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+                touch public/blog/${{ env.FILE_NAME }}.html
+                                  
+            - name: Convert article to HTML
+              run: node ./scripts/convert-to-html.js
