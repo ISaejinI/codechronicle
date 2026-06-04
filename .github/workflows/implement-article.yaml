@@ -24,7 +24,7 @@ jobs:
             - name: Find new article file
               run: |
                 cd blog
-                FILE="$(find . -type f -newermt '1 minute ago' -print -quit)"
+                FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/.*\.md$' | head -n 1)
                 FILE="${FILE#./}"
                 echo "FILE=$FILE" >> $GITHUB_ENV
 
