@@ -1,0 +1,46 @@
+name: Implement Article
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'blog/**'
+
+jobs:
+    implement-article:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clone GitHub Repo
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.head_ref }}
+
+            - name: Find new article file
+              run: |
+                cd blog
+                FILE="$(find . -type f -newermt '1 minute ago' -print -quit)"
+                FILE="${FILE#./}"
+                echo "FILE=$FILE" >> $GITHUB_ENV
+
+
+            - name: Get Article Title & Summary
+              id: get_title_summary
+              run: |
+                TITLE=$(grep '^title:' "blog/${{ env.FILE }}" | sed 's/title: "\(.*\)"/\1/')
+                SUMMARY=$(grep '^summary:' "blog/${{ env.FILE }}" | sed 's/summary: "\(.*\)"/\1/')
+                echo "TITLE=$TITLE" >> $GITHUB_ENV
+                echo "SUMMARY=$SUMMARY" >> $GITHUB_ENV
+
+            - name: Send Discord Message
+              env:
+                DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+              uses: Ilshidur/action-discord@0.4.0
+              with:
+                args: |
+                    Nouvel article généré : **${{ env.TITLE }}**
+                    
+                    Résumé : ${{ env.SUMMARY }}
+                    
+                    L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.
+                
