@@ -90,7 +90,7 @@ jobs:
               uses: Ilshidur/action-discord@0.4.0
               with:
                 args: |
-                    >>> #Nouvel article généré ! 
+                    >>> # Nouvel article généré ! 
                     **${{ env.TITLE }}**
                     ${{ env.SUMMARY }}
                     [Lire l'article complet](https://blogdebot.infinityfreeapp.com/blog/${{ env.FILE }})
