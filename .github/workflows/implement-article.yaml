@@ -39,7 +39,6 @@ jobs:
                 echo "FILE=$FILE" >> $GITHUB_ENV
                 echo "Merged article file: $FILE"
 
-
             - name: Get Article Title & Summary
               id: get_title_summary
               run: |
@@ -47,18 +46,6 @@ jobs:
                 SUMMARY=$(grep '^summary:' "blog/${{ env.FILE }}" | sed 's/summary: "\(.*\)"/\1/')
                 echo "TITLE=$TITLE" >> $GITHUB_ENV
                 echo "SUMMARY=$SUMMARY" >> $GITHUB_ENV
-
-            - name: Send Discord Message
-              env:
-                DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-              uses: Ilshidur/action-discord@0.4.0
-              with:
-                args: |
-                    Nouvel article généré : **${{ env.TITLE }}**
-                    
-                    Résumé : ${{ env.SUMMARY }}
-                    
-                    L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.
 
             - name: Set up Node.js
               uses: actions/setup-node@v1
@@ -97,6 +84,18 @@ jobs:
                 git commit -m "Generate HTML article: ${{ env.FILE_NAME }}.html and index.html"
                 git push
             
+            - name: Send Discord Message
+              env:
+                DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+              uses: Ilshidur/action-discord@0.4.0
+              with:
+                args: |
+                    >>> #Nouvel article généré ! 
+                    **${{ env.TITLE }}**
+                    ${{ env.SUMMARY }}
+                    [Lire l'article complet](https://blogdebot.infinityfreeapp.com/blog/${{ env.FILE }})
+                    -# L’article a été généré automatiquement. Merci de le relire avant de merger cette Pull Request.
+
             - name: Publish public folder to InfinityFree
               uses: SamKirkland/FTP-Deploy-Action@4.1.0
               with:
